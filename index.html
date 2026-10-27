@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SỐNG — Chạm Vào Những Ngày Lưng Chừng | Tạp Chí Sống Chậm & Chiêm Nghiệm</title>
+  <meta name="description" content="Không gian lưu giữ những lát cắt cuộc sống hàng ngày: vui bình dị, buồn man mác, trầm ngâm chiều muộn, triết lý sâu sắc và những điểm chạm dành cho tuổi lưng chừng." />
+  <meta property="og:title" content="SỐNG — Chạm Vào Những Ngày Lưng Chừng" />
+  <meta property="og:description" content="Giữa những vội vã thường ngày, dừng lại một nhịp để thấy mình đang sống." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Sticky Navigation Header -->
+  <header class="site-header">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href="#hero" class="flex items-center gap-2.5 group">
+        <span class="w-9 h-9 rounded-full flex items-center justify-center font-serif-editorial font-bold text-lg text-white" style="background-color: var(--accent-primary);">
+          S
+        </span>
+        <div>
+          <span class="font-serif-editorial text-xl font-bold tracking-tight block leading-none">SỐNG</span>
+          <span class="text-[11px] block" style="color: var(--text-muted);">Chạm vào lưng chừng</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium" aria-label="Điều hướng chính">
+        <a href="#stories" class="hover:opacity-75 transition">Chuyện thường ngày</a>
+        <a href="#midlife-touchpoints" class="hover:opacity-75 transition">Tuổi lưng chừng</a>
+        <a href="#contemplation-station" class="hover:opacity-75 transition">Trạm dừng 60s</a>
+        <a href="#share-story" class="hover:opacity-75 transition">Sổ tay & Tâm sự</a>
+        <a href="#about" class="hover:opacity-75 transition">Về "Sống"</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="#share-story" class="px-3 py-1.5 rounded-full text-xs font-medium border flex items-center gap-1.5 transition hover:opacity-85" style="border-color: var(--border-subtle);">
+          <span>🔖 Sổ tay</span>
+          <span id="saved-count-badge" class="px-1.5 py-0.5 rounded-full text-[11px] font-bold text-white" style="background-color: var(--accent-secondary);">2</span>
+        </a>
+        <button id="btn-theme-toggle" type="button" class="px-3 py-1.5 rounded-full text-xs font-medium border transition hover:opacity-85" style="border-color: var(--border-subtle);" aria-label="Đổi chế độ giao diện Sáng hoặc Tối">
+          <span id="theme-toggle-label">🌙 Đêm trầm</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="py-10 sm:py-14 border-b" style="border-color: var(--border-subtle);">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <!-- Time-aware greeting badge -->
+        <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium mb-5 surface-secondary">
+          <span id="time-greeting" class="font-semibold" style="color: var(--accent-primary);">☀️ Chào buổi sáng trong trẻo</span>
+          <span>•</span>
+          <span id="time-subgreeting" style="color: var(--text-secondary);">Ngày mới bắt đầu từ một hơi thở chậm bên tách trà ấm.</span>
+        </div>
+
+        <div class="max-w-3xl mb-6">
+          <h1 class="font-serif-editorial text-3xl sm:text-5xl font-bold leading-tight mb-4">
+            Sống — Giữa những ngày vui, những chiều buồn và những khoảng lặng tuổi lưng chừng.
+          </h1>
+          <p id="hero-mood-quote" class="font-serif-editorial text-lg sm:text-xl italic leading-relaxed" style="color: var(--text-secondary);">
+            “Giữa những vội vã thường ngày, dừng lại một nhịp để thấy mình đang sống.”
+          </p>
+        </div>
+
+        <!-- Interactive Mood Selector -->
+        <div class="mb-8">
+          <div class="text-xs font-semibold uppercase tracking-wider mb-2.5" style="color: var(--text-muted);">
+            Hôm nay lòng bạn đang ở nhịp nào? (Chạm để chọn lăng kính đọc bài):
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" class="mood-pill active" data-mood="all" data-hero-pill="true">✨ Tất cả lát cắt</button>
+            <button type="button" class="mood-pill" data-mood="vui" data-hero-pill="true">☀️ Vui bình dị</button>
+            <button type="button" class="mood-pill" data-mood="buon" data-hero-pill="true">🌧️ Buồn man mác</button>
+            <button type="button" class="mood-pill" data-mood="tram-ngam" data-hero-pill="true">🍂 Trầm ngâm</button>
+            <button type="button" class="mood-pill" data-mood="triet-ly" data-hero-pill="true">🌿 Triết lý sâu</button>
+            <button type="button" class="mood-pill" data-mood="lung-chung" data-hero-pill="true">⏳ Điểm chạm lưng chừng</button>
+          </div>
+        </div>
+
+        <!-- Featured Story Card -->
+        <div id="featured-post-container"></div>
+      </div>
+    </section>
+
+    <!-- 2. STORIES & EMOTIONAL LENS SECTION -->
+    <section id="stories" class="py-12 sm:py-16 border-b" style="border-color: var(--border-subtle);">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest block mb-1" style="color: var(--accent-primary);">Nhật Ký Thường Ngày & Lăng Kính Cảm Xúc</span>
+            <h2 class="font-serif-editorial text-2xl sm:text-4xl font-bold">Những lát cắt đời sống</h2>
+          </div>
+          <div id="stories-count-label" class="text-xs font-medium" style="color: var(--text-muted);">
+            Hiển thị 8 / 8 lát cắt cuộc sống
+          </div>
+        </div>
+
+        <!-- Search & Filter Bar -->
+        <div class="editorial-card p-4 sm:p-5 mb-8">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div class="md:col-span-7 relative">
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Tìm câu chuyện theo từ khóa (có dấu hoặc không dấu: ca phe, cha me, co don, binh yen)..."
+                class="w-full px-4 py-2.5 rounded-xl text-sm border bg-transparent focus:outline-none"
+                style="border-color: var(--border-subtle); color: var(--text-primary);"
+              />
+            </div>
+            <div class="md:col-span-3">
+              <select
+                id="sort-select"
+                aria-label="Sắp xếp bài viết"
+                class="w-full px-3.5 py-2.5 rounded-xl text-sm border bg-transparent focus:outline-none"
+                style="border-color: var(--border-subtle); color: var(--text-primary); background-color: var(--bg-card);"
+              >
+                <option value="default">Sắp xếp: Mới nhất</option>
+                <option value="most-liked">Nhiều đồng cảm nhất</option>
+                <option value="short-read">Bài đọc ngắn (3 - 4 phút)</option>
+              </select>
+            </div>
+            <div class="md:col-span-2 flex justify-end">
+              <button type="button" onclick="resetFilters()" class="w-full px-3 py-2.5 rounded-xl text-xs font-medium border hover:opacity-80 transition" style="border-color: var(--border-subtle);">
+                Đặt lại bộ lọc
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t" style="border-color: var(--border-subtle);">
+            <button type="button" class="mood-pill active" data-mood="all">Tất cả</button>
+            <button type="button" class="mood-pill" data-mood="lung-chung">⏳ Tuổi lưng chừng</button>
+            <button type="button" class="mood-pill" data-mood="vui">☀️ Vui bình dị</button>
+            <button type="button" class="mood-pill" data-mood="buon">🌧️ Buồn man mác</button>
+            <button type="button" class="mood-pill" data-mood="tram-ngam">🍂 Trầm ngâm</button>
+            <button type="button" class="mood-pill" data-mood="triet-ly">🌿 Triết lý sâu</button>
+          </div>
+        </div>
+
+        <!-- Stories Grid -->
+        <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- 3. 5 MIDLIFE TOUCHPOINTS SECTION -->
+    <section id="midlife-touchpoints" class="py-12 sm:py-16 border-b surface-secondary" style="border-color: var(--border-subtle);">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl mb-8">
+          <span class="text-xs font-bold uppercase tracking-widest block mb-1" style="color: var(--accent-primary);">Chuyên Đề Tâm Thức</span>
+          <h2 class="font-serif-editorial text-2xl sm:text-4xl font-bold mb-3">5 Điểm Chạm Của "Tuổi Lưng Chừng"</h2>
+          <p class="text-sm sm:text-base" style="color: var(--text-secondary);">
+            Đi qua sự ồn ào của đôi mươi nhưng chưa chạm tới tuổi già an nhàn, mỗi chúng ta đều có những khúc quanh lặng lẽ. Chạm vào từng lát cắt dưới đây để soi chiếu và vỗ về chính mình.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          <div id="touchpoints-tabs" class="lg:col-span-5 flex flex-col gap-2.5"></div>
+          <div id="touchpoint-detail" class="lg:col-span-7"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 60-SECOND BREATHING & CONTEMPLATION CARD STATION -->
+    <section id="contemplation-station" class="py-12 sm:py-16 border-b" style="border-color: var(--border-subtle);">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl mb-8">
+          <span class="text-xs font-bold uppercase tracking-widest block mb-1" style="color: var(--accent-secondary);">Không Gian Tĩnh Lặng</span>
+          <h2 class="font-serif-editorial text-2xl sm:text-4xl font-bold mb-2">Trạm Dừng 60 Giây & Thẻ Chạm Lưng Chừng</h2>
+          <p class="text-sm sm:text-base" style="color: var(--text-secondary);">
+            Dành 1 phút thở sâu cùng tiếng mưa chiều và rút một tấm thẻ triết lý ngẫu nhiên cho ngày hôm nay.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Breathing Box -->
+          <div class="lg:col-span-5 editorial-card p-6 sm:p-8 flex flex-col justify-between text-center">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider mb-4" style="color: var(--text-muted);">
+                <span>🧘 Nhịp thở 4 - 4 - 6</span>
+                <span id="breathing-timer" class="px-2.5 py-1 rounded-full surface-secondary" style="color: var(--accent-primary);">60 giây</span>
+              </div>
+
+              <div class="breathing-orb-wrap my-4">
+                <div id="breathing-orb" class="breathing-orb cursor-pointer" onclick="startBreathingSession()">
+                  Chạm để thở
+                </div>
+              </div>
+
+              <p id="breathing-phase-text" class="text-sm italic my-4 min-h-[42px]" style="color: var(--text-secondary);">
+                Nhịp thở 4 - 4 - 6 giúp làm dịu hệ thần kinh trong 1 phút.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-4 border-t" style="border-color: var(--border-subtle);">
+              <button id="btn-start-breath" type="button" onclick="startBreathingSession()" class="px-4 py-2 rounded-full text-xs font-semibold text-white" style="background-color: var(--accent-secondary);">
+                ▶ Bắt đầu 60 giây
+              </button>
+              <button id="btn-stop-breath" type="button" onclick="stopBreathingSession(false)" class="px-3.5 py-2 rounded-full text-xs font-medium border" style="border-color: var(--border-subtle);">
+                Dừng lại
+              </button>
+              <button id="btn-rain-sound" type="button" onclick="toggleRainAmbience()" class="px-3.5 py-2 rounded-full text-xs font-medium border" style="border-color: var(--border-subtle);">
+                🌧️ Bật tiếng mưa chiều dịu êm
+              </button>
+            </div>
+          </div>
+
+          <!-- Philosophy Card Drawer -->
+          <div class="lg:col-span-7 editorial-card p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span id="card-category" class="mood-badge mood-triet-ly">Điểm chạm lưng chừng</span>
+                <span id="card-number" class="text-xs font-medium" style="color: var(--text-muted);">Thẻ #1 / 12</span>
+              </div>
+
+              <div class="p-6 sm:p-8 rounded-2xl surface-secondary my-3 text-center">
+                <p id="card-quote" class="font-serif-editorial text-xl sm:text-2xl italic leading-relaxed mb-5">
+                  “Không sao cả nếu hôm nay bạn chỉ đi được những bước rất nhỏ. Cây cổ thụ cũng lớn lên từ những mùa âm thầm hút nhựa dưới lòng đất.”
+                </p>
+                <div class="w-16 h-0.5 mx-auto mb-4" style="background-color: var(--accent-primary);"></div>
+                <p id="card-practice" class="text-sm font-medium" style="color: var(--accent-secondary);">
+                  Thực hành nhỏ: Hôm nay hãy gạch bớt 1 việc chưa thật sự khẩn cấp khỏi danh sách và đi ngủ sớm hơn 30 phút.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t" style="border-color: var(--border-subtle);">
+              <button id="btn-draw-card" type="button" onclick="drawRandomCard()" class="px-5 py-2.5 rounded-full text-sm font-semibold text-white transition" style="background-color: var(--accent-primary);">
+                🎲 Rút một lời nhắn khác
+              </button>
+              <div class="flex flex-wrap items-center gap-2">
+                <button id="btn-copy-card" type="button" onclick="copyCurrentCard()" class="px-3.5 py-2 rounded-full text-xs font-medium border" style="border-color: var(--border-subtle);">
+                  📋 Sao chép trích dẫn
+                </button>
+                <button id="btn-download-card-png" type="button" onclick="downloadCardAsPng()" class="px-3.5 py-2 rounded-full text-xs font-medium border" style="border-color: var(--border-subtle);">
+                  🖼️ Tải thẻ ảnh (.PNG)
+                </button>
+              </div>
+            </div>
+            <canvas id="quote-export-canvas" class="hidden" width="1080" height="1350"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PERSONAL JOURNAL & BOOKMARKS SECTION -->
+    <section id="share-story" class="py-12 sm:py-16 border-b surface-secondary" style="border-color: var(--border-subtle);">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl mb-8">
+          <span class="text-xs font-bold uppercase tracking-widest block mb-1" style="color: var(--accent-primary);">Sổ Tay & Góc Tâm Sự</span>
+          <h2 class="font-serif-editorial text-2xl sm:text-4xl font-bold mb-2">Viết Lại Một Lát Cắt Của Riêng Bạn</h2>
+          <p class="text-sm sm:text-base" style="color: var(--text-secondary);">
+            Mọi dòng cảm xúc bạn lưu tại đây được giữ riêng tư 100% ngay trên trình duyệt của bạn (`localStorage`). Bạn có thể xuất ra file kỷ niệm `.json` / `.txt` bất cứ lúc nào.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Write Form -->
+          <div class="lg:col-span-6 editorial-card p-6 sm:p-8">
+            <h3 class="font-serif-editorial text-xl font-bold mb-4">✍️ Ghi chép lát cắt hôm nay</h3>
+            <form id="journal-form" onsubmit="saveJournalEntry(event)" class="space-y-4">
+              <div>
+                <label for="journal-title" class="block text-xs font-semibold uppercase tracking-wider mb-1.5" style="color: var(--text-muted);">
+                  Tiêu đề khoảnh khắc
+                </label>
+                <input
+                  id="journal-title"
+                  type="text"
+                  placeholder="Ví dụ: Chiều mưa ngồi nhớ một người bạn cũ..."
+                  class="w-full px-3.5 py-2.5 rounded-xl text-sm border bg-transparent focus:outline-none"
+                  style="border-color: var(--border-subtle); color: var(--text-primary);"
+                />
+              </div>
+
+              <div>
+                <label for="journal-mood" class="block text-xs font-semibold uppercase tracking-wider mb-1.5" style="color: var(--text-muted);">
+                  Nhịp cảm xúc
+                </label>
+                <select
+                  id="journal-mood"
+                  class="w-full px-3.5 py-2.5 rounded-xl text-sm border focus:outline-none"
+                  style="border-color: var(--border-subtle); color: var(--text-primary); background-color: var(--bg-card);"
+                >
+                  <option value="lung-chung">⏳ Điểm chạm lưng chừng</option>
+                  <option value="vui">☀️ Vui bình dị</option>
+                  <option value="buon">🌧️ Buồn man mác</option>
+                  <option value="tram-ngam">🍂 Trầm ngâm</option>
+                  <option value="triet-ly">🌿 Triết lý sâu</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="journal-content" class="block text-xs font-semibold uppercase tracking-wider mb-1.5" style="color: var(--text-muted);">
+                  Nội dung suy tư của bạn
+                </label>
+                <textarea
+                  id="journal-content"
+                  rows="5"
+                  placeholder="Viết xuống những điều đang ở trong lòng bạn lúc này..."
+                  class="w-full px-3.5 py-2.5 rounded-xl text-sm border bg-transparent focus:outline-none"
+                  style="border-color: var(--border-subtle); color: var(--text-primary);"
+                ></textarea>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2.5 pt-2">
+                <button id="btn-save-journal" type="submit" class="px-5 py-2.5 rounded-full text-sm font-semibold text-white" style="background-color: var(--accent-primary);">
+                  💾 Lưu vào Nhật ký riêng tư
+                </button>
+                <button id="btn-copy-journal" type="button" onclick="copyJournalDraft()" class="px-4 py-2.5 rounded-full text-xs font-medium border" style="border-color: var(--border-subtle);">
+                  📋 Sao chép để gửi cho bạn bè/tác giả
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Saved Bookmarks & Personal Entries -->
+          <div class="lg:col-span-6 editorial-card p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b" style="border-color: var(--border-subtle);">
+                <h3 class="font-serif-editorial text-xl font-bold">🔖 Sổ Tay Đã Lưu Của Tôi</h3>
+                <div class="flex items-center gap-1.5">
+                  <button id="btn-export-txt" type="button" onclick="exportMemories('txt')" class="px-2.5 py-1 rounded text-xs border" style="border-color: var(--border-subtle);">
+                    Xuất .TXT
+                  </button>
+                  <button id="btn-export-json" type="button" onclick="exportMemories('json')" class="px-2.5 py-1 rounded text-xs border" style="border-color: var(--border-subtle);">
+                    Sao lưu .JSON
+                  </button>
+                  <label for="input-import-json" class="px-2.5 py-1 rounded text-xs border cursor-pointer" style="border-color: var(--border-subtle);">
+                    Nhập .JSON
+                  </label>
+                  <input id="input-import-json" type="file" accept=".json" class="hidden" onchange="handleImportJson(event)" />
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <h4 class="text-xs font-bold uppercase tracking-wider mb-2.5" style="color: var(--accent-secondary);">
+                  Bài viết bạn đã đánh dấu
+                </h4>
+                <div id="saved-bookmarks-list" class="space-y-2.5 max-h-48 overflow-y-auto pr-1"></div>
+              </div>
+
+              <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider mb-2.5" style="color: var(--accent-primary);">
+                  Nhật ký riêng tư của bạn
+                </h4>
+                <div id="personal-journal-list" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-3 border-t text-xs" style="border-color: var(--border-subtle); color: var(--text-muted);">
+              🔒 <strong>Lưu ý minh bạch công nghệ (Web tĩnh):</strong> Dữ liệu sổ tay được lưu cục bộ trên trình duyệt của bạn. Hãy bấm "Sao lưu .JSON" nếu bạn muốn chuyển sang máy tính hoặc điện thoại khác.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ABOUT & MANIFESTO SECTION -->
+    <section id="about" class="py-12 sm:py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="editorial-card p-6 sm:p-10">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-4 text-center">
+              <div class="w-28 h-28 rounded-full mx-auto mb-4 flex items-center justify-center surface-secondary border-2" style="border-color: var(--accent-primary);">
+                <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--accent-primary);">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+              </div>
+              <h3 id="owner-name" class="font-serif-editorial text-xl font-bold">Người Kể Chuyện Đời Thường</h3>
+              <p id="owner-role" class="text-xs mt-1" style="color: var(--text-muted);">Người ghi chép những lát cắt tuổi lưng chừng</p>
+            </div>
+
+            <div class="md:col-span-8">
+              <span class="text-xs font-bold uppercase tracking-widest block mb-2" style="color: var(--accent-primary);">Về Không Gian "Sống"</span>
+              <h2 class="font-serif-editorial text-2xl sm:text-3xl font-bold mb-4">
+                “Cuộc sống không chỉ có những cột mốc rực rỡ...”
+              </h2>
+              <p id="owner-bio" class="text-sm sm:text-base leading-relaxed mb-4" style="color: var(--text-secondary);"></p>
+              <p class="text-sm leading-relaxed mb-6" style="color: var(--text-secondary);">
+                Cuộc sống nằm ở tách cà phê nguội trên bàn làm việc, tiếng thở dài khi phố lên đèn, nụ cười bất chợt vì một điều nhỏ nhặt, và cả những khoảng lặng không biết gọi tên ở tuổi lưng chừng. Cảm ơn bạn đã ghé qua và dừng lại nơi này một nhịp.
+              </p>
+              <div id="owner-contact-links" class="flex flex-wrap items-center gap-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t text-center text-xs" style="border-color: var(--border-subtle); color: var(--text-muted);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>SỐNG — Chạm Vào Những Ngày Lưng Chừng</strong> • Thiết kế chuẩn Editorial Slow-Living
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#hero" class="hover:underline">Lên đầu trang ↑</a>
+        <a href="#stories" class="hover:underline">Tất cả bài viết</a>
+        <a href="#contemplation-station" class="hover:underline">Trạm dừng 60s</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DISTRACTION-FREE READING MODAL -->
+  <div id="reading-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Cửa sổ đọc bài chuyên sâu">
+    <div class="reading-modal-box">
+      <div class="reading-progress-track">
+        <div id="reading-progress-bar" class="reading-progress-bar"></div>
+      </div>
+
+      <!-- Modal Toolbar -->
+      <div class="px-4 sm:px-6 py-3 border-b flex flex-wrap items-center justify-between gap-2 surface-secondary" style="border-color: var(--border-subtle);">
+        <div class="flex items-center gap-1.5">
+          <button id="btn-font-decrease" type="button" onclick="changeReadingFontSize(-2)" class="px-2.5 py-1 rounded border text-xs font-semibold" style="border-color: var(--border-subtle);" title="Giảm cỡ chữ">
+            A-
+          </button>
+          <button id="btn-font-reset" type="button" onclick="changeReadingFontSize(0)" class="px-2.5 py-1 rounded border text-xs font-medium" style="border-color: var(--border-subtle);" title="Cỡ chữ mặc định">
+            A
+          </button>
+          <button id="btn-font-increase" type="button" onclick="changeReadingFontSize(2)" class="px-2.5 py-1 rounded border text-xs font-semibold" style="border-color: var(--border-subtle);" title="Tăng cỡ chữ">
+            A+
+          </button>
+          <button id="btn-font-family" type="button" onclick="toggleReadingFontFamily()" class="px-2.5 py-1 rounded border text-xs font-medium hidden sm:inline-block" style="border-color: var(--border-subtle);">
+            Phông: Văn chương
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="btn-modal-bookmark" type="button" onclick="if(window.state && state.activeModalPostId) toggleBookmark(state.activeModalPostId)" class="px-3 py-1 rounded-full border text-xs font-medium" style="border-color: var(--border-subtle);">
+            📑 Lưu bài
+          </button>
+          <button id="btn-modal-close" type="button" onclick="closeReadingModal()" class="px-3.5 py-1 rounded-full text-xs font-semibold text-white" style="background-color: var(--accent-primary);">
+            ✕ Đóng (ESC)
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Scrollable Article Body -->
+      <div id="reading-modal-scroll" class="p-6 sm:p-10 overflow-y-auto">
+        <div id="reading-modal-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-wrap" aria-live="polite"></div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
